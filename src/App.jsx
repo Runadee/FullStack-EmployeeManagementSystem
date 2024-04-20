@@ -1,5 +1,6 @@
 
 import './App.css'
+import HeaderComponent from './components/HeaderComponent'
 import ListEmployeeComponent from './components/ListEmployeeComponent'
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
 
   return (
     <>
+      <HeaderComponent />
       <ListEmployeeComponent />
     </>
   )

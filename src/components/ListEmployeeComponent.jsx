@@ -1,28 +1,23 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import { listEmployees } from '../services/EmployeeService';
 
 const ListEmployeeComponent = () => {
 
-    const dummyData = [
-        {
-            "id": 1,
-            "firstName": "Edanur",
-            "lastName": "JavaDeveloper",
-            "email": "edanur@gurgen.com"
-        },
-        {
-            "id": 2,
-            "firstName": "Duman",
-            "lastName": "JavaDeveloper",
-            "email": "duman@gurgen.com"
-        },
-        {
-            "id": 3,
-            "firstName": "Deniz",
-            "lastName": "Su",
-            "email": "deniz@developer.com"
-        }
-    ]
+   const [employees, setEmployees] = useState([]);
+
+   useEffect(() => {
+ 
+    listEmployees().then((response) => {
+        setEmployees(response.data);
+    }).catch( error => {
+        console.error(error);
+    })
+
+   }, [])
+    
+
+
   return (
     <div className='container' >
 
@@ -38,7 +33,7 @@ const ListEmployeeComponent = () => {
             </thead>
             <tbody>
                 {
-                    dummyData.map(employee =>
+                   employees.map(employee =>
                     <tr key={employee.id} >
                         <td>{employee.id}</td>
                         <td>{employee.firstName}</td>
